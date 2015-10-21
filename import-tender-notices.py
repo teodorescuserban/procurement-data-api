@@ -22,9 +22,13 @@ def parse_regions(s):
     """Parse comma-separated list of regions."""
     return [region for region in re.split(r',\s*', s) if region]
 
-def parse_url(row):
+def parse_urls(row):
+    """Parse and construct BuyAndSell URLs."""
     id = re.sub(r'[^A-Z0-9-]', '', row.get('reference_number'))
-    return 'https://buyandsell.gc.ca/procurement-data/tender-notice/' + id
+    return {
+        'en': 'https://buyandsell.gc.ca/procurement-data/tender-notice/' + id,
+        'fr': 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/' + id
+    }
 
 def parse_record(row):
     """Parse a record from a CSV row."""
@@ -36,7 +40,7 @@ def parse_record(row):
         'amendment_number': row.get('amendment_number'),
         'regions_opportunity': parse_regions(row.get('region_opportunity')),
         'regions_delivery': parse_regions(row.get('region_delivery')),
-        'url': parse_url(row)
+        'urls': parse_urls(row)
     }
 
 def import_data(input):
