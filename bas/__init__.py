@@ -1,5 +1,6 @@
+"""Top-level module for BuyAndSell data."""
 
-from bas.tender_notices import TenderNoticeList
+import bas.tender_notices
 
 def load_tenders(source):
-    return TenderNoticeList.load(source)
+    return bas.tender_notices.TenderNoticeList.load(source)
