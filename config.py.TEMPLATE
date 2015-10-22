@@ -1,0 +1,6 @@
+DATABASE = {
+    'hostname': 'localhost',
+    'username': '<<USERNAME>>',
+    'password': '<<PASSWORD>>',
+    'database': 'bas'
+}
