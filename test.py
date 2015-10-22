@@ -1,7 +1,6 @@
 #/usr/bin/python3
 
 import config
-import pymysql
 import sys
 import bas
 
@@ -38,13 +37,7 @@ else:
 #
 # Open the database connection
 #
-connection = pymysql.connect(
-    host=config.DATABASE['hostname'],
-    user=config.DATABASE['username'],
-    password=config.DATABASE['password'],
-    db=config.DATABASE['database'],
-    charset='utf8'
-)
+connection = bas.connect(config)
 
 #
 # Load the notices into the database
