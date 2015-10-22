@@ -116,10 +116,3 @@ class TenderNotice(object):
             notices.load_notice(row)
         return notices
 
-if sys.argv[1]:
-    notices = TenderNoticeList.load(sys.argv[1])
-else:
-    notices = TenderNoticeList.load(sys.stdin)
-
-for refno in notices:
-    print(notices.get(refno))
