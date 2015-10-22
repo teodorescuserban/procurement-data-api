@@ -6,24 +6,15 @@ drop table if exists Tenders;
 
 create table Tenders (
   tender varchar(32) primary key,
-  title_en varchar(256) not null,
-  title_fr varchar(256) not null
-) engine=InnoDB default charset=utf8;
-
-create table GSINs (
-  gsin varchar(32) primary key
-) engine=InnoDB default charset=utf8;
-
-create table Regions (
-  region varchar(8) primary key
+  title_en text not null,
+  title_fr text not null
 ) engine=InnoDB default charset=utf8;
 
 create table TenderGSINMap (
   tender varchar(32) not null,
   gsin varchar(32) not null,
   primary key(tender, gsin),
-  foreign key(tender) references Tenders(tender),
-  foreign key(gsin) references GSINs(gsin)
+  foreign key(tender) references Tenders(tender) on delete cascade
 ) engine=InnoDB default charset=utf8;
 
 create table TenderRegionMap (
@@ -31,7 +22,10 @@ create table TenderRegionMap (
   region varchar(8) not null,
   rel enum('delivery', 'opportunity') not null,
   primary key(tender, region, rel),
-  foreign key(tender) references Tenders(tender),
-  foreign key(region) references Regions(region)
+  foreign key(tender) references Tenders(tender) on delete cascade
 ) engine=InnoDB default charset=utf8;
 
+create view TenderView as
+select T.*, G.gsin, R.region, R.rel from Tenders T
+join TenderGSINMap G using(tender)
+join TenderRegionMap R using(tender);

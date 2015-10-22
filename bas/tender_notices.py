@@ -5,6 +5,43 @@ import csv
 import re
 import collections
 
+REGION_MAP = {
+    'Aboriginal Lands': 'ABL',
+    'Alberta': 'AB',
+    'British Columbia': 'BC',
+    'Canada': 'CAN',
+    'Colombie-Britannique': 'BC',
+    'États-Unis': 'USA',
+    'Foreign': 'X-INT',
+    'Île-du-Prince-Édouard': 'PE',
+    'Internationale': 'INT',
+    'Manitoba': 'MB',
+    'Mexico': 'MEX',
+    'Mexique': 'MEX',
+    'Monde': 'GLB',
+    'National Capital Region': 'NCR',
+    'New Brunswick': 'NB',
+    'Newfoundland and Labrador': 'NL',
+    'Non spécifiée': None,
+    'Northwest Territories': 'NT',
+    'Nouveau-Brunswick': 'NB',
+    'Nouvelle-Écosse': 'NS',
+    'Nova Scotia': 'NS',
+    'Nunavut': 'NU',
+    'Ontario': 'ON',
+    'Prince Edward Island': 'PE',
+    'Quebec': 'QC',
+    'Québec': 'QC',
+    'Région de la capitale nationale': 'NCR',
+    'Saskatchewan': 'SK',
+    'Terre-Neuve-et-Labrador': 'NL',
+    'Terres autochtones': 'ABL',
+    'Territoires du Nord-Ouest': 'NT',
+    'United States': 'USA',
+    'Unspecified': None,
+    'World': 'GLB',
+    'Yukon': 'YT'
+}
 
 class TenderNoticeList(collections.UserDict):
     """A list of tender notices."""
@@ -84,7 +121,7 @@ class TenderNotice(object):
 
     def _parse_regions(self, s):
         """Parse comma-separated list of regions."""
-        return [region for region in re.split(r',\s*', s) if region]
+        return [REGION_MAP[region] for region in re.split(r',\s*', s) if region and REGION_MAP[region]]
 
     def _parse_gsins(self, s):
         """Parse multiple GSINs from a single field."""
