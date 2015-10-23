@@ -43,54 +43,59 @@ Result:
 ```
 [
   {
-    "title_en": "Canada Post: Transportation Opportunities (Canada Post / Postes Canada)",
-    "title_fr": "Postes Canada: Occasions de Transport du courrier (Canada Post / Postes Canada)",
-    "gsins": [
-      "V204B"
-    ],
-    "regions_opportunity": [
-      "CAN"
-    ],
     "regions_delivery": [
       "CAN"
     ],
-    "tender": "PW-13-00360795"
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00360795",
+    "title_en": "Canada Post: Transportation Opportunities (Canada Post / Postes Canada)",
+    "title_fr": "Postes Canada: Occasions de Transport du courrier (Canada Post / Postes Canada)",
+    "tender": "PW-13-00360795",
+    "regions_opportunity": [
+      "CAN"
+    ],
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00360795",
+    "gsins": [
+      "V204B"
+    ]
   },
   {
+    "regions_delivery": [
+      "CAN"
+    ],
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00538668",
     "title_en": "Printing Logbooks and Combined Forms for Fisheries and Oceans Canada (F5211-130006)",
     "title_fr": "Impression des journaux de bord et des formulaires combin\u00e9s pour P\u00eaches et Oc\u00e9ans Canada (F5211-130006)",
+    "tender": "PW-13-00538668",
+    "regions_opportunity": [
+      "CAN"
+    ],
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00538668",
     "gsins": [
       "N7610AA",
       "N7610D"
-    ],
-    "regions_opportunity": [
-      "CAN"
-    ],
-    "regions_delivery": [
-      "CAN"
-    ],
-    "tender": "PW-13-00538668"
+    ]
   },
   {
-    "title_en": "LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A))",
-    "title_fr": "LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A))",
-    "gsins": [
-      "N7690"
-    ],
-    "regions_opportunity": [
-      "INT"
-    ],
     "regions_delivery": [
       "QC"
     ],
-    "tender": "PW-15-00700569"
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569",
+    "title_en": "LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A))",
+    "title_fr": "LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A))",
+    "tender": "PW-15-00700569",
+    "regions_opportunity": [
+      "INT"
+    ],
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569",
+    "gsins": [
+      "N7690"
+    ]
   }
 ]
 ```
 
 ## Coming soon ...
 
-* WSGI script (for running in a multi-threaded browser) [#1](https://github.com/PWGSC-DEEN/procurement-data-api/issues/1)
 * ``setup.py`` file (to automatically download and install dependencies) [#2](https://github.com/PWGSC-DEEN/procurement-data-api/issues/2)
 * Support for contract history and GSIN lookup (handles only tender notices right now) [#3](https://github.com/PWGSC-DEEN/procurement-data-api/issues/3) and  [#4](https://github.com/PWGSC-DEEN/procurement-data-api/issues/4)
 * Output formats beyond JSON (CSV and XML).  [#5](https://github.com/PWGSC-DEEN/procurement-data-api/issues/5)

@@ -24,6 +24,9 @@ def fix_row(cursor, row):
             else:
                 value = ()
         data[name] = value
+    # Generate URLs to BAS
+    data['url_en'] = 'https://buyandsell.gc.ca/procurement-data/tender-notice/{}'.format(data['tender'])
+    data['url_fr'] = 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/{}'.format(data['tender'])
     return data
 
 def search(gsins=[], delivery=[], opportunity=[]):
@@ -39,6 +42,8 @@ def search(gsins=[], delivery=[], opportunity=[]):
     conditions.append(' or '.join(["region_opportunity='{}'".format(esc(region)) for region in opportunity if region]))
 
     condition_fragment = ' and '.join(["({})".format(condition) for condition in conditions if condition])
+    if not condition_fragment:
+        condition_fragment = 'true';
 
     query = SEARCH_QUERY_TEMPLATE.format(conditions=condition_fragment)
 
