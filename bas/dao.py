@@ -28,10 +28,15 @@ def fix_row(cursor, row):
 
 def search(gsins=[], delivery=[], opportunity=[]):
 
+    connection = bas.connect(config)
+
+    def esc(s):
+        return connection.escape_string(s)
+
     conditions = []
-    conditions.append(' or '.join(["gsin like '{}%'".format(gsin) for gsin in gsins if gsin]))
-    conditions.append(' or '.join(["region_delivery='{}'".format(region) for region in delivery if region]))
-    conditions.append(' or '.join(["region_opportunity='{}'".format(region) for region in opportunity if region]))
+    conditions.append(' or '.join(["gsin like '{}%'".format(esc(gsin)) for gsin in gsins if gsin]))
+    conditions.append(' or '.join(["region_delivery='{}'".format(esc(region)) for region in delivery if region]))
+    conditions.append(' or '.join(["region_opportunity='{}'".format(esc(region)) for region in opportunity if region]))
 
     condition_fragment = ' and '.join(["({})".format(condition) for condition in conditions if condition])
 
@@ -39,7 +44,6 @@ def search(gsins=[], delivery=[], opportunity=[]):
 
     print(query)
 
-    connection = bas.connect(config)
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchall()
