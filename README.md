@@ -17,7 +17,7 @@ _Started by David Megginson, 2015-10_
 ## Running (single thread)
 
 ```
-python api.py
+python bas/api.py
 ```
 
 ## Usage

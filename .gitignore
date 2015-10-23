@@ -1,2 +1,3 @@
-config.py
+/bas-api.wsgi
 __pycache__
+config.py

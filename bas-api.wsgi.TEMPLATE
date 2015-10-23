@@ -1,0 +1,15 @@
+import sys
+import os
+
+def execfile(filename):
+    globals = dict( __file__ = filename )
+    exec( open(filename).read(), globals )
+
+activate_this = '<<PATH TO VIRTUAL ENVIRONMENT>>/bin/activate_this.py'
+execfile(activate_this)
+
+# Can't read template files from eggs (yet)
+sys.path.insert(0, '<<PATH TO ROOT OF API CODE>>')
+
+from bas.api import app as application
+
