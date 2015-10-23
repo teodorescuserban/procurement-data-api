@@ -90,10 +90,10 @@ Result:
 
 ## Coming soon ...
 
-* ``setup.py`` file (to automatically download and install dependencies)
-* WSGI script (for running in a multi-threaded browser)
-* Docker setup script (to build as a container)
-* Support for contract history and GSIN lookup (handles only tender notices right now)
-* Fuzzy lookup support: if there are no exact GSIN matches, look for something sort-of similar.
-* Output formats beyond JSON (CSV and XML).
+* WSGI script (for running in a multi-threaded browser) [#1](https://github.com/PWGSC-DEEN/procurement-data-api/issues/1)
+* ``setup.py`` file (to automatically download and install dependencies) [#2](https://github.com/PWGSC-DEEN/procurement-data-api/issues/2)
+* Support for contract history and GSIN lookup (handles only tender notices right now) [#3](https://github.com/PWGSC-DEEN/procurement-data-api/issues/3) and  [#4](https://github.com/PWGSC-DEEN/procurement-data-api/issues/4)
+* Output formats beyond JSON (CSV and XML).  [#5](https://github.com/PWGSC-DEEN/procurement-data-api/issues/5)
+* Fuzzy lookup support: if there are no exact GSIN matches, look for something sort-of similar. [#6](https://github.com/PWGSC-DEEN/procurement-data-api/issues/6)
+* Docker setup script (to build as a container).  [#7](https://github.com/PWGSC-DEEN/procurement-data-api/issues/7)
 
