@@ -54,7 +54,7 @@ class TenderNoticeList(collections.UserDict):
         Import a single notice from a CSV row.
         @param row The CSV data row to load.
         """
-        refno = row.get('reference_number')
+        refno = row.get('reference_number').upper()
         if not refno:
             raise Exception("No reference number provided: " + str(row))
         notice = self.data.get(refno)
@@ -121,7 +121,7 @@ class TenderNotice(object):
 
     def _parse_regions(self, s):
         """Parse comma-separated list of regions."""
-        return [REGION_MAP[region] for region in re.split(r',\s*', s) if region and REGION_MAP[region]]
+        return [REGION_MAP[region].upper() for region in re.split(r',\s*', s) if region and REGION_MAP[region]]
 
     def _parse_gsins(self, s):
         """Parse multiple GSINs from a single field."""
@@ -131,7 +131,7 @@ class TenderNotice(object):
         gsins = []
         result = re.search(r'([A-Z][A-Z0-9]+):', s)
         while result:
-            gsins.append(result.group(1))
+            gsins.append(result.group(1).upper())
             s = s[result.end():]
             result = re.search(r'([A-Z][A-Z0-9]+):', s)
         return gsins
