@@ -18,7 +18,7 @@ REGION_MAP = {
     'Manitoba': 'MB',
     'Mexico': 'MEX',
     'Mexique': 'MEX',
-    'Monde': 'GLB',
+    'Monde': 'INT',
     'National Capital Region': 'NCR',
     'New Brunswick': 'NB',
     'Newfoundland and Labrador': 'NL',
