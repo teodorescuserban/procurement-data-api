@@ -8,8 +8,11 @@ _Started by David Megginson, 2015-10_
 
 1. Create a new MySQL database (e.g. "bas").
 2. Set up the database schema: ``mysql bas < sql/schema.sql``
-3. Set up a Python virtualenv for the app: ``mkvirtualenv -p /usr/bin/python3 bas``
-4. Install flask: ``pip install flask``
+3. Copy the ``config.py.TEMPLATE`` file to ``config.py`` and fill in your local database connection information.
+4. Set up a Python virtualenv for the app: ``mkvirtualenv -p /usr/bin/python3 bas``
+5. Install flask: ``pip install flask``
+6. Download [procurement data](https://buyandsell.gc.ca/procurement-data/csv/tender/active) from BuyAndSell.
+7. Load the data into the database: ``python load_data.py tpsgc-pwgsc_ao-t_a.csv``
 
 ## Running (single thread)
 

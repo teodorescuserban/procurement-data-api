@@ -39,7 +39,7 @@ REGION_MAP = {
     'Territoires du Nord-Ouest': 'NT',
     'United States': 'USA',
     'Unspecified': None,
-    'World': 'GLB',
+    'World': 'INT',
     'Yukon': 'YT'
 }
 
