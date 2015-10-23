@@ -78,7 +78,7 @@ Result:
       "N7690"
     ],
     "regions_opportunity": [
-      "GLB"
+      "INT"
     ],
     "regions_delivery": [
       "QC"
