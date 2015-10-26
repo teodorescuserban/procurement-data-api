@@ -58,56 +58,88 @@ PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIE
 ```
 [
   {
-    "regions_delivery": [
-      "CAN"
+    "title_en": "AIR CHARTER SERVICES (E60SQ-020001/B)",
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-ZL-102-25299",
+    "gsins": [
+      "V201A",
+      "V201B"
     ],
-    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00360795",
+    "tender": "PW-$$ZL-102-25299",
+    "regions_opportunity": [],
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-ZL-102-25299",
+    "regions_delivery": [
+      "NCR",
+      "ON",
+      "QC"
+    ],
+    "title_fr": "SERVICES D'AFFR\u00c8TEMENT A\u00c9RIEN (E60SQ-020001/B)"
+  },
+  {
+    "title_en": "AIRCRAFT RENTAL with Pilot(s) (W2037-150072/D)",
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-KIN-650-6679",
+    "gsins": [
+      "V204IA"
+    ],
+    "tender": "PW-$KIN-650-6679",
+    "regions_opportunity": [],
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-KIN-650-6679",
+    "regions_delivery": [
+      "NCR",
+      "ON",
+      "QC"
+    ],
+    "title_fr": "la location d'a\u00e9ronefs avec pilote(s) (W2037-150072/D)"
+  },
+  {
     "title_en": "Canada Post: Transportation Opportunities (Canada Post / Postes Canada)",
-    "title_fr": "Postes Canada: Occasions de Transport du courrier (Canada Post / Postes Canada)",
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00360795",
+    "gsins": [
+      "V204B"
+    ],
     "tender": "PW-13-00360795",
     "regions_opportunity": [
       "CAN"
     ],
-    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00360795",
-    "gsins": [
-      "V204B"
-    ]
-  },
-  {
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00360795",
     "regions_delivery": [
       "CAN"
     ],
-    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00538668",
+    "title_fr": "Postes Canada: Occasions de Transport du courrier (Canada Post / Postes Canada)"
+  },
+  {
     "title_en": "Printing Logbooks and Combined Forms for Fisheries and Oceans Canada (F5211-130006)",
-    "title_fr": "Impression des journaux de bord et des formulaires combin\u00e9s pour P\u00eaches et Oc\u00e9ans Canada (F5211-130006)",
-    "tender": "PW-13-00538668",
-    "regions_opportunity": [
-      "CAN"
-    ],
     "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00538668",
     "gsins": [
       "N7610AA",
       "N7610D"
-    ]
+    ],
+    "tender": "PW-13-00538668",
+    "regions_opportunity": [
+      "CAN"
+    ],
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00538668",
+    "regions_delivery": [
+      "CAN"
+    ],
+    "title_fr": "Impression des journaux de bord et des formulaires combin\u00e9s pour P\u00eaches et Oc\u00e9ans Canada (F5211-130006)"
   },
   {
-    "regions_delivery": [
-      "QC"
-    ],
-    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569",
     "title_en": "LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A))",
-    "title_fr": "LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A))",
+    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569",
+    "gsins": [
+      "N7690"
+    ],
     "tender": "PW-15-00700569",
     "regions_opportunity": [
       "INT"
     ],
-    "url_en": "https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569",
-    "gsins": [
-      "N7690"
-    ]
+    "url_fr": "https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569",
+    "regions_delivery": [
+      "QC"
+    ],
+    "title_fr": "LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A))"
   }
-]
-```
+]```
 
 ## Coming soon ...
 
