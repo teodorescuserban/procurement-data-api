@@ -11,6 +11,7 @@ SEARCH_QUERY_TEMPLATE = ' '.join((
     'group_concat(distinct region_delivery separator ",") as regions_delivery,',
     'group_concat(distinct region_opportunity separator ",") as regions_opportunity',
     'from TenderView',
+    'left join TenderSearch using (tender)'
     'where {conditions}',
     'group by tender, title_en, title_fr'
 ))
@@ -31,7 +32,7 @@ def fix_row(cursor, row):
     data['url_fr'] = 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/{}'.format(id)
     return data
 
-def search(gsins=[], delivery=[], opportunity=[]):
+def search(gsins=[], delivery=[], opportunity=[], keywords=[]):
 
     connection = bas.connect(config)
 
@@ -42,7 +43,8 @@ def search(gsins=[], delivery=[], opportunity=[]):
     conditions.append(' or '.join(["gsin like '{}%'".format(esc(gsin)) for gsin in gsins if gsin]))
     conditions.append(' or '.join(["region_delivery='{}'".format(esc(region)) for region in delivery if region]))
     conditions.append(' or '.join(["region_opportunity='{}'".format(esc(region)) for region in opportunity if region]))
-
+    conditions.append(' or '.join(["tender in (select tender from TenderSearch where match(lemma) against('{}'))".format(esc(keyword)) for keyword in keywords if keyword]))
+    
     condition_fragment = ' and '.join(["({})".format(condition) for condition in conditions if condition])
     if not condition_fragment:
         condition_fragment = 'true';
