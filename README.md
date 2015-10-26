@@ -22,7 +22,7 @@ python bas/api.py
 
 ## Usage
 
-The extension after ``tender-notices`` selects the data type.  You can use ``tender-notices.csv`` for [Command-Separated Values](https://en.wikipedia.org/wiki/Comma-separated_values) output (suitable for opening with a spreadsheet application), or '`tender-notices.json`` for [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON) output (suitable for embedding in a web application).  By default, these returns all active tender notices, but you can filter results using the following GET parameters (all optional):
+The extension after ``tender-notices`` selects the data type.  You can use ``tender-notices.csv`` for [Command-Separated Values](https://en.wikipedia.org/wiki/Comma-separated_values) output (suitable for opening with a spreadsheet application), or ``tender-notices.json`` for [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON) output (suitable for embedding in a web application).  By default, these returns all active tender notices, but you can filter results using the following GET parameters (all optional):
 
 ``gsins`` — a comma-separated list of GSIN-code prefixes to match, e.g. ``gsins=N7610,V204``.  These will match any GSIN codes that begin with those letters, e.g. _N7610AA_ or _V204B._  A tender notice needs to match only one of the GSIN codes.
 
