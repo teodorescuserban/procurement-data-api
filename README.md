@@ -22,7 +22,7 @@ python bas/api.py
 
 ## Usage
 
-The path ``tender-notices.json`` returns a list of tender notices in a JSON-based encoding. By default, it returns all active tender notices, but you can filter results using the following GET parameters (all optional):
+The extension after ``tender-notices`` selects the data type.  You can use ``tender-notices.csv`` for [Command-Separated Values](https://en.wikipedia.org/wiki/Comma-separated_values) output (suitable for opening with a spreadsheet application), or '`tender-notices.json`` for [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON) output (suitable for embedding in a web application).  By default, these returns all active tender notices, but you can filter results using the following GET parameters (all optional):
 
 ``gsins`` — a comma-separated list of GSIN-code prefixes to match, e.g. ``gsins=N7610,V204``.  These will match any GSIN codes that begin with those letters, e.g. _N7610AA_ or _V204B._  A tender notice needs to match only one of the GSIN codes.
 
@@ -30,15 +30,30 @@ The path ``tender-notices.json`` returns a list of tender notices in a JSON-base
 
 ``opportunity`` — a comma-separated list of codes to match for the region of opportunity, e.g. ``opportunity=PE,NS,NB``.  The codes are the same as for the _delivery_ parameter.
 
-## Example
+## Examples
 
-Find all tender notices that have a GSIN code starting with "N76" or "V2", and a delivery region of Ontario, Quebec, the National Capital Region, or Canada-wide:
+Find all tender notices that have a GSIN code starting with "N76" or "V2", and a delivery region of Ontario, Quebec, the National Capital Region, or Canada-wide.
+
+### CSV output
+
+**URL:** http://bas-api.megginson.com/tender-notices.csv?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+
+**Result:**
 
 ```
-http://example.org/tender-notices.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+tender,title_en,title_fr,url_en,url_fr,gsins,regions_delivery,regions_opportunity
+PW-$$ZL-102-25299,AIR CHARTER SERVICES (E60SQ-020001/B),SERVICES D'AFFRÈTEMENT AÉRIEN (E60SQ-020001/B),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-ZL-102-25299,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-ZL-102-25299,"V201A,V201B","NCR,ON,QC",
+PW-$KIN-650-6679,AIRCRAFT RENTAL with Pilot(s) (W2037-150072/D),la location d'aéronefs avec pilote(s) (W2037-150072/D),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-KIN-650-6679,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-KIN-650-6679,V204IA,"NCR,ON,QC",
+PW-13-00360795,Canada Post: Transportation Opportunities (Canada Post / Postes Canada),Postes Canada: Occasions de Transport du courrier (Canada Post / Postes Canada),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00360795,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00360795,V204B,CAN,CAN
+PW-13-00538668,Printing Logbooks and Combined Forms for Fisheries and Oceans Canada (F5211-130006),Impression des journaux de bord et des formulaires combinés pour Pêches et Océans Canada (F5211-130006),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-13-00538668,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-13-00538668,"N7610AA,N7610D",CAN,CAN
+PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A)),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569,N7690,QC,INT
 ```
 
-Result:
+### JSON output
+
+**URL:** http://example.org/tender-notices.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+
+**Result:**
 
 ```
 [
