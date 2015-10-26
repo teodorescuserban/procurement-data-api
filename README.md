@@ -139,12 +139,12 @@ PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIE
     ],
     "title_fr": "LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A))"
   }
-]```
+]
+```
 
 ## Coming soon ...
 
 * Support for contract history and GSIN lookup (handles only tender notices right now) [#3](https://github.com/PWGSC-DEEN/procurement-data-api/issues/3) and  [#4](https://github.com/PWGSC-DEEN/procurement-data-api/issues/4)
-* Output formats beyond JSON (CSV and XML).  [#5](https://github.com/PWGSC-DEEN/procurement-data-api/issues/5)
 * Fuzzy lookup support: if there are no exact GSIN matches, look for something sort-of similar. [#6](https://github.com/PWGSC-DEEN/procurement-data-api/issues/6)
 * Docker setup script (to build as a container).  [#7](https://github.com/PWGSC-DEEN/procurement-data-api/issues/7)
 
