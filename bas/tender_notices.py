@@ -103,8 +103,10 @@ class TenderNotice(object):
         self.reference_number = row['reference_number']
         if row['language'] == 'English':
             self.title_en = row['title']
+            self.description_en = row['description']
         else:
             self.title_fr = row['title']
+            self.description_fr = row['description']
 
         gsins = self._parse_gsins(row['gsin'])
         self.gsins = self.gsins.union(gsins)

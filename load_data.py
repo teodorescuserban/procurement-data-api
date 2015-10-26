@@ -14,6 +14,11 @@ INSERT_TENDER_QUERY = ' '.join((
     'values (%s, %s, %s)'
 ))
 
+INSERT_FULLTEXT_QUERY = ' '.join((
+    'insert into TenderSearch(tender, lemma, lang)',
+    'values (%s, %s, %s)'
+))
+
 INSERT_GSIN_QUERY = ' '.join((
     'insert into TenderGSINMap (tender, gsin)',
     'values (%s, %s)',
@@ -46,11 +51,17 @@ connection = bas.connect(config)
 with connection.cursor() as cursor:
 
     cursor.execute('delete from Tenders')
+    cursor.execute('delete from TenderSearch')
     
     for refno in notices:
         notice = notices.get(refno)
 
         result = cursor.execute(INSERT_TENDER_QUERY, (refno, notice.title_en, notice.title_fr))
+
+        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.title_en, 'en'))
+        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.description_en, 'en'))
+        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.title_fr, 'fr'))
+        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.description_fr, 'fr'))
 
         for gsin in notice.gsins:
             result = cursor.execute(INSERT_GSIN_QUERY, (refno, gsin))

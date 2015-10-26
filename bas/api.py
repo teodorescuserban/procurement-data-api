@@ -18,7 +18,8 @@ def bas_query(format):
     gsins = split(flask.request.args.get('gsins', ''))
     delivery = split(flask.request.args.get('delivery', ''))
     opportunity = split(flask.request.args.get('opportunity', ''))
-    notices = bas.dao.search(gsins=gsins, delivery=delivery, opportunity=opportunity)
+    keywords = split(flask.request.args.get('keywords', ''))
+    notices = bas.dao.search(gsins=gsins, delivery=delivery, opportunity=opportunity, keywords=keywords)
     if format == 'json':
         return flask.Response(json.dumps(notices, indent=2), mimetype='application/json')
     elif format == 'csv':

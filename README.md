@@ -24,11 +24,13 @@ python bas/api.py
 
 The extension after ``tender-notices`` selects the data type.  You can use ``tender-notices.csv`` for [Command-Separated Values](https://en.wikipedia.org/wiki/Comma-separated_values) output (suitable for opening with a spreadsheet application), or ``tender-notices.json`` for [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON) output (suitable for embedding in a web application).  By default, these return all active tender notices, but you can filter results using the following GET parameters (all optional):
 
-``gsins`` — a comma-separated list of GSIN-code prefixes to match, e.g. ``gsins=N7610,V204``.  These will match any GSIN codes that begin with those letters, e.g. _N7610AA_ or _V204B._  A tender notice needs to match only one of the GSIN codes.
+**``gsins``** — a comma-separated list of GSIN-code prefixes to match, e.g. ``gsins=N7610,V204``.  These will match any GSIN codes that begin with those letters, e.g. _N7610AA_ or _V204B._  A tender notice needs to match only one of the GSIN codes.
 
-``delivery`` — a comma-separated list of codes to match for the region of delivery, e.g. ``delivery=ON,QC,NCR``.  In addition to the two-letter codes for the 13 provinces and territories, some tender notices may include ``NCR`` for the national-capital region, ``CAN`` for Canada-wide, ``ABL`` for aboriginal lands, ``USA`` for the United States, ``MEX`` for Mexico, or ``INT`` for international.  Tender notices are not consistent, and may (for example) list ``CAN``, all of the province codes separately, or both to indicate a tender that applies to the whole country.
+**``delivery``** — a comma-separated list of codes to match for the region of delivery, e.g. ``delivery=ON,QC,NCR``.  In addition to the two-letter codes for the 13 provinces and territories, some tender notices may include ``NCR`` for the national-capital region, ``CAN`` for Canada-wide, ``ABL`` for aboriginal lands, ``USA`` for the United States, ``MEX`` for Mexico, or ``INT`` for international.  Tender notices are not consistent, and may (for example) list ``CAN``, all of the province codes separately, or both to indicate a tender that applies to the whole country.
 
-``opportunity`` — a comma-separated list of codes to match for the region of opportunity, e.g. ``opportunity=PE,NS,NB``.  The codes are the same as for the _delivery_ parameter.
+**``opportunity``** — a comma-separated list of codes to match for the region of opportunity, e.g. ``opportunity=PE,NS,NB``.  The codes are the same as for the _delivery_ parameter.
+
+**``keywords``** — a comma-separated list of keywords or phrases to search in both the title and description, e.g. ``keywords=drupal``.  The API will look for the keywords in both English and French text.
 
 ## Examples
 

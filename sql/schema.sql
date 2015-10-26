@@ -2,6 +2,7 @@ drop table if exists TenderRegionMap;
 drop table if exists TenderGSINMap;
 drop table if exists Regions;
 drop table if exists GSINs;
+drop table if exists TenderSearch;
 drop table if exists Tenders;
 
 create table Tenders (
@@ -9,6 +10,14 @@ create table Tenders (
   title_en text not null,
   title_fr text not null
 ) engine=InnoDB default charset=utf8;
+
+create table TenderSearch (
+  tender varchar(32) not null,
+  lemma text not null,
+  lang enum('en', 'fr') not null,
+  index(tender),
+  fulltext(lemma)
+) engine=MyISAM default charset=utf8;
 
 create table TenderGSINMap (
   tender varchar(32) not null,
