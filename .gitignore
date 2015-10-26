@@ -1,3 +1,5 @@
-/bas-api.wsgi
 __pycache__
-config.py
+*.pyc
+/Inputs
+/config.py
+/bas-api.wsgi

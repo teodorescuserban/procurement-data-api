@@ -3,6 +3,7 @@
 import bas
 import config
 import collections
+import re
 
 SEARCH_QUERY_TEMPLATE = ' '.join((
     'select tender, title_en, title_fr,',
@@ -25,8 +26,9 @@ def fix_row(cursor, row):
                 value = ()
         data[name] = value
     # Generate URLs to BAS
-    data['url_en'] = 'https://buyandsell.gc.ca/procurement-data/tender-notice/{}'.format(data['tender'])
-    data['url_fr'] = 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/{}'.format(data['tender'])
+    id = re.sub(r'[^A-Z0-9-]', '', data['tender'])
+    data['url_en'] = 'https://buyandsell.gc.ca/procurement-data/tender-notice/{}'.format(id)
+    data['url_fr'] = 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/{}'.format(id)
     return data
 
 def search(gsins=[], delivery=[], opportunity=[]):

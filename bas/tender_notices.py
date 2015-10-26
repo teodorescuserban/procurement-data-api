@@ -106,8 +106,6 @@ class TenderNotice(object):
         else:
             self.title_fr = row['title']
 
-        self.urls = self._parse_urls(row)
-
         gsins = self._parse_gsins(row['gsin'])
         self.gsins = self.gsins.union(gsins)
 
@@ -136,14 +134,6 @@ class TenderNotice(object):
             s = s[result.end():]
             result = re.search(r'([A-Z][A-Z0-9]+):', s)
         return gsins
-
-    def _parse_urls(self, row):
-        """Parse and construct BuyAndSell URLs."""
-        id = re.sub(r'[^A-Z0-9-]', '', row.get('reference_number'))
-        return {
-            'en': 'https://buyandsell.gc.ca/procurement-data/tender-notice/' + id,
-            'fr': 'https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/' + id
-        }
 
     @staticmethod
     def load_data(input):
