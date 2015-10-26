@@ -51,7 +51,7 @@ PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIE
 
 ### JSON output
 
-**URL:** http://example.org/tender-notices.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+**URL:** http://bas-api.megginson.com/tender-notices.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
 
 **Result:**
 
