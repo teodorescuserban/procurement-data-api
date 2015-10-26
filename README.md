@@ -10,7 +10,7 @@ _Started by David Megginson, 2015-10_
 2. Set up the database schema: ``mysql bas < sql/schema.sql``
 3. Copy the ``config.py.TEMPLATE`` file to ``config.py`` and fill in your local database connection information.
 4. Set up a Python virtualenv for the app: ``mkvirtualenv -p /usr/bin/python3 bas``
-5. Install flask and pymysql: ``pip install flask pymysql``
+5. Install dependencies: ``python3 setup.py build``
 6. Download [procurement data](https://buyandsell.gc.ca/procurement-data/csv/tender/active) from BuyAndSell.
 7. Load the data into the database: ``python load_data.py tpsgc-pwgsc_ao-t_a.csv``
 
@@ -96,7 +96,6 @@ Result:
 
 ## Coming soon ...
 
-* ``setup.py`` file (to automatically download and install dependencies) [#2](https://github.com/PWGSC-DEEN/procurement-data-api/issues/2)
 * Support for contract history and GSIN lookup (handles only tender notices right now) [#3](https://github.com/PWGSC-DEEN/procurement-data-api/issues/3) and  [#4](https://github.com/PWGSC-DEEN/procurement-data-api/issues/4)
 * Output formats beyond JSON (CSV and XML).  [#5](https://github.com/PWGSC-DEEN/procurement-data-api/issues/5)
 * Fuzzy lookup support: if there are no exact GSIN matches, look for something sort-of similar. [#6](https://github.com/PWGSC-DEEN/procurement-data-api/issues/6)

@@ -1,5 +1,6 @@
-__pycache__
 *.pyc
 /Inputs
-/config.py
 /bas-api.wsgi
+/bas_api.egg-info
+/config.py
+__pycache__
