@@ -6,7 +6,10 @@ import collections
 import re
 
 SEARCH_QUERY_TEMPLATE = ' '.join((
-    'select tender, title_en, title_fr,',
+    'select tender, solicitation_number,',
+    'title_en, title_fr,',
+    'buyer_en, buyer_fr,',
+    'date_format(date_closing, "%Y-%m-%d") as date_closing,',
     'group_concat(distinct gsin separator ",") as gsins,',
     'group_concat(distinct region_delivery separator ",") as regions_delivery,',
     'group_concat(distinct region_opportunity separator ",") as regions_opportunity',

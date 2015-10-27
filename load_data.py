@@ -10,8 +10,8 @@ import bas
 #
 
 INSERT_TENDER_QUERY = ' '.join((
-    'insert into Tenders (tender, title_en, title_fr)',
-    'values (%s, %s, %s)'
+    'insert into Tenders (tender, solicitation_number, title_en, title_fr, buyer_en, buyer_fr, date_closing)',
+    'values (%s, %s, %s, %s, %s, %s, %s)'
 ))
 
 INSERT_FULLTEXT_QUERY = ' '.join((
@@ -56,7 +56,7 @@ with connection.cursor() as cursor:
     for refno in notices:
         notice = notices.get(refno)
 
-        result = cursor.execute(INSERT_TENDER_QUERY, (refno, notice.title_en, notice.title_fr))
+        result = cursor.execute(INSERT_TENDER_QUERY, (refno, notice.solicitation_number, notice.title_en, notice.title_fr, notice.buyer_en, notice.buyer_fr, notice.date_closing))
 
         result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.title_en, 'en'))
         result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.description_en, 'en'))

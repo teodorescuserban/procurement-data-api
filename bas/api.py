@@ -13,6 +13,11 @@ def split(value):
     else:
         return ()
 
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  return response
+
 @app.route('/tender-notices.<format>')
 def bas_query(format):
     gsins = split(flask.request.args.get('gsins', ''))
@@ -23,7 +28,7 @@ def bas_query(format):
     if format == 'json':
         return flask.Response(json.dumps(notices, indent=2), mimetype='application/json')
     elif format == 'csv':
-        return flask.Response(generate_csv(notices), mimetype='text/csv')
+        return flask.Response(generate_csv(notices), mimetype='text/csv;charset=UTF-8')
     else:
         raise Exception("Unsupported format: " + format)
 
@@ -32,11 +37,14 @@ def generate_csv(notices):
         'tender',
         'title_en',
         'title_fr',
-        'url_en',
-        'url_fr',
+        'buyer_en',
+        'buyer_fr',
         'gsins',
         'regions_delivery',
-        'regions_opportunity'
+        'regions_opportunity',
+        'url_en',
+        'url_fr',
+        'date_closing'
     ]
     def to_csv(row):
         with io.StringIO() as output:

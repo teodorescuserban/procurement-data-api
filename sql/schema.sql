@@ -7,8 +7,12 @@ drop table if exists Tenders;
 
 create table Tenders (
   tender varchar(32) primary key,
+  solicitation_number varchar(128) not null,
   title_en text not null,
-  title_fr text not null
+  title_fr text not null,
+  buyer_en varchar(128) not null,
+  buyer_fr varchar(128) not null,
+  date_closing date
 ) engine=InnoDB default charset=utf8;
 
 create table TenderSearch (
