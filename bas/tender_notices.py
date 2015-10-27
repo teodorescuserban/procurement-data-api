@@ -100,12 +100,17 @@ class TenderNotice(object):
 
     def load(self, row):
         self.reference_number = row['reference_number']
+        self.solicitation_number = row['solicitation_number']
+
         if row['language'] == 'English':
             self.title_en = row['title']
             self.description_en = row['description']
+            self.buyer_en = row['end_user_entity']
+            self.date_closing = self._parse_date(row['date_closing'])
         else:
             self.title_fr = row['title']
             self.description_fr = row['description']
+            self.buyer_fr = row['end_user_entity']
 
         gsins = self._parse_gsins(row['gsin'])
         self.gsins = self.gsins.union(gsins)
@@ -135,6 +140,14 @@ class TenderNotice(object):
             s = s[result.end():]
             result = re.search(r'([A-Z][A-Z0-9]+):', s)
         return gsins
+
+    def _parse_date(self, s):
+        result = re.match(r'^(2\d{3}-\d{2}-\d{2})\s*(\d{2}:\d{2})\s*(.+)$', s)
+        if result:
+            # Ignoring the time
+            return result.group(1)
+        else:
+            raise Exception("Unparseable date: {}".format(s))
 
     @staticmethod
     def load_data(input):

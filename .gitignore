@@ -1,4 +1,5 @@
 *.pyc
+/.eggs
 /Inputs
 /bas-api.wsgi
 /bas_api.egg-info
