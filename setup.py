@@ -14,5 +14,6 @@ setup(
     author='David Megginson',
     author_email='contact@megginson.com',
     url='https://github.com/PWGSC-DEEN/procurement-data-api',
-    install_requires=['flask', 'pymysql']
+    install_requires=['flask', 'pymysql'],
+    test_suite='tests'
 )

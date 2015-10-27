@@ -72,7 +72,6 @@ class TenderNoticeList(collections.UserDict):
         @param source A filename or input stream for a CSV file.
         @return a TenderNoticeList object
         """
-        print("Source is {}".format(source))
         if hasattr(source, 'read'):
             return TenderNoticeList._load(source)
         else:
