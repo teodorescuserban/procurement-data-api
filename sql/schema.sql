@@ -52,8 +52,17 @@ create table Contracts (
   supplier_region varchar(64),
   buyer_en varchar(256) not null,
   buyer_fr varchar(256) not null,
-  gsin varchar(32) not null
+  gsin varchar(32) not null,
+  index(gsin)
 ) engine=InnoDB default charset=utf8;
+
+create table ContractSearch (
+  contract varchar(32) not null,
+  lemma text not null,
+  lang enum('en', 'fr') not null,
+  index(contract),
+  fulltext(lemma)
+) engine=MyISAM default charset=utf8;
 
 drop view if exists TenderView;
 create view TenderView as

@@ -28,6 +28,11 @@ INSERT_CONTRACT_QUERY = ' '.join((
     'gsin = values(gsin)'
 ))
 
+INSERT_FULLTEXT_QUERY = ' '.join((
+    'insert into ContractSearch(contract, lemma, lang)',
+    'values (%s, %s, %s)'
+))
+
 #
 # Load the contracts
 #
@@ -37,6 +42,7 @@ with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
     with connection.cursor() as cursor:
         today = str(datetime.date.today())
         cursor.execute('delete from Contracts')
+        cursor.execute('delete from ContractSearch')
         for contract in contracts:
             if contract['date-expires'] > today:
                 result = cursor.execute(INSERT_CONTRACT_QUERY, (
@@ -52,4 +58,14 @@ with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
                     contract['buyer_en'],
                     contract['buyer_fr'],
                     contract['gsin']))
+                result = cursor.execute(INSERT_FULLTEXT_QUERY, (
+                    contract['contract'],
+                    contract['title_en'],
+                    'en'
+                ));
+                result = cursor.execute(INSERT_FULLTEXT_QUERY, (
+                    contract['contract'],
+                    contract['title_fr'],
+                    'fr'
+                ));
     connection.commit()
