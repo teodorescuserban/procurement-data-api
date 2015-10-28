@@ -32,6 +32,16 @@ def bas_query(format):
     else:
         raise Exception("Unsupported format: " + format)
 
+@app.route('/contracts.<format>')
+def contracts(format):
+    gsins = split(flask.request.args.get('gsins', ''))
+    keywords = split(flask.request.args.get('keywords', ''))
+    contracts = bas.dao.search_contracts(gsins=gsins, keywords=keywords)
+    if format == 'json':
+        return flask.Response(json.dumps(contracts, indent=2), mimetype='application/json')
+    else:
+        raise Exception("Unsupported format: " + format)
+
 def generate_csv(notices):
     headers = [
         'tender',

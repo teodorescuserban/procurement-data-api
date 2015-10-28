@@ -19,6 +19,19 @@ SEARCH_QUERY_TEMPLATE = ' '.join((
     'group by tender, title_en, title_fr'
 ))
 
+CONTRACT_QUERY_TEMPLATE = ' '.join((
+    'select contract, title_en, title_fr,'
+    'date_format(date_awarded, "%Y-%m-%d") as date_awarded,'
+    'date_format(date_expires, "%Y-%m-%d") as date_expires,'
+    'value, supplier, supplier_city, supplier_region,',
+    'buyer_en, buyer_fr, gsin',
+    'from Contracts',
+    'where {conditions}'
+))
+
+def esc(s):
+    return bas.connect(config).escape_string(s)
+
 def fix_row(cursor, row):
     data = {}
     for i, value in enumerate(row):
@@ -29,6 +42,10 @@ def fix_row(cursor, row):
             else:
                 value = ()
         data[name] = value
+    return data
+
+def post_tender(cursor, row):
+    data = fix_row(cursor, row)
     # Generate URLs to BAS
     id = re.sub(r'[^A-Z0-9-]', '', data['tender'])
     data['url_en'] = 'https://buyandsell.gc.ca/procurement-data/tender-notice/{}'.format(id)
@@ -38,9 +55,6 @@ def fix_row(cursor, row):
 def search(gsins=[], delivery=[], opportunity=[], keywords=[]):
 
     connection = bas.connect(config)
-
-    def esc(s):
-        return connection.escape_string(s)
 
     conditions = []
     conditions.append(' or '.join(["gsin like '{}%'".format(esc(gsin)) for gsin in gsins if gsin]))
@@ -54,10 +68,27 @@ def search(gsins=[], delivery=[], opportunity=[], keywords=[]):
 
     query = SEARCH_QUERY_TEMPLATE.format(conditions=condition_fragment)
 
-    print(query)
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return [post_tender(cursor, row) for row in result]
+
+def search_contracts(gsins=[], keywords=[]):
+
+    connection = bas.connect(config)
+
+    conditions = []
+    conditions.append(' or '.join(["gsin like '{}%'".format(esc(gsin)) for gsin in gsins if gsin]))
+    conditions.append(' or '.join(["contract in (select contract from ContractSearch where match(lemma) against('{}'))".format(esc(keyword)) for keyword in keywords if keyword]))
+    
+    condition_fragment = ' and '.join(["({})".format(condition) for condition in conditions if condition])
+    if not condition_fragment:
+        condition_fragment = 'true';
+
+    query = CONTRACT_QUERY_TEMPLATE.format(conditions=condition_fragment)
 
     with connection.cursor() as cursor:
         cursor.execute(query)
         result = cursor.fetchall()
         return [fix_row(cursor, row) for row in result]
-
+        
