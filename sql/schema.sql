@@ -40,6 +40,21 @@ create table TenderRegionMap (
   index(region)
 ) engine=InnoDB default charset=utf8;
 
+create table Contracts (
+  contract varchar(128) primary key not null,
+  title_en text not null,
+  title_fr text not null,
+  date_awarded date not null,
+  date_expires date not null,
+  value varchar(32) not null,
+  supplier text not null,
+  supplier_city varchar(64),
+  supplier_region varchar(64),
+  buyer_en varchar(256) not null,
+  buyer_fr varchar(256) not null,
+  gsin varchar(32) not null
+) engine=InnoDB default charset=utf8;
+
 drop view if exists TenderView;
 create view TenderView as
 select T.*, G.gsin, R1.region as region_delivery, R2.region as region_opportunity
