@@ -18,17 +18,18 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
   return response
 
+@app.route('/tenders.<format>')
 @app.route('/tender-notices.<format>')
 def bas_query(format):
     gsins = split(flask.request.args.get('gsins', ''))
     delivery = split(flask.request.args.get('delivery', ''))
     opportunity = split(flask.request.args.get('opportunity', ''))
     keywords = split(flask.request.args.get('keywords', ''))
-    notices = bas.dao.search(gsins=gsins, delivery=delivery, opportunity=opportunity, keywords=keywords)
+    tenders = bas.dao.search_tenders(gsins=gsins, delivery=delivery, opportunity=opportunity, keywords=keywords)
     if format == 'json':
-        return flask.Response(json.dumps(notices, indent=2), mimetype='application/json')
+        return flask.Response(json.dumps(tenders, indent=2), mimetype='application/json')
     elif format == 'csv':
-        return flask.Response(generate_csv(notices), mimetype='text/csv;charset=UTF-8')
+        return flask.Response(generate_csv(tenders), mimetype='text/csv;charset=UTF-8')
     else:
         raise Exception("Unsupported format: " + format)
 
