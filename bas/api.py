@@ -1,73 +1,69 @@
-import flask
-import bas.dao
-import json
-import csv
-import io
+"""
+Controllers for the BuyAndSell procurement-data API.
 
+Using Flask 0.10
+
+Started October 2015 by David Megginson
+"""
+
+import flask
+
+from bas.dao import search_tenders, search_contracts
+from bas.output import gen_json, gen_tenders_csv, gen_contracts_csv
+
+# Set up the app object for export
 app = flask.Flask(__name__)
 app.debug = True
 
-def split(value):
+
+@app.after_request
+def after_request(response):
+    """Add a CORS header to all output."""
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@app.route('/tenders.<format>')
+@app.route('/tender-notices.<format>') # deprecated
+def tenders(format):
+    """Return a list of matching tenders."""
+    gsins = _split_tokens(flask.request.args.get('gsins', ''))
+    delivery = _split_tokens(flask.request.args.get('delivery', ''))
+    opportunity = _split_tokens(flask.request.args.get('opportunity', ''))
+    keywords = _split_tokens(flask.request.args.get('keywords', ''))
+    tenders = search_tenders(gsins=gsins, delivery=delivery, opportunity=opportunity, keywords=keywords)
+    if format == 'json':
+        return flask.Response(gen_json(tenders), mimetype='application/json')
+    elif format == 'csv':
+        return flask.Response(gen_tenders_csv(tenders), mimetype='text/plain;charset=UTF-8')
+    else:
+        raise Exception("Unsupported format: " + format)
+
+
+@app.route('/contracts.<format>')
+def contracts(format):
+    """Return a list of matching contracts."""
+    gsins = _split_tokens(flask.request.args.get('gsins', ''))
+    keywords = _split_tokens(flask.request.args.get('keywords', ''))
+    contracts = search_contracts(gsins=gsins, keywords=keywords)
+    if format == 'json':
+        return flask.Response(gen_json(contracts), mimetype='application/json')
+    elif format == 'csv':
+        return flask.Response(gen_contracts_csv(contracts), mimetype='text/csv;charset=UTF-8')
+    else:
+        raise Exception("Unsupported format: " + format)
+
+
+def _split_tokens(value):
+    """
+    Split tokens, trimming whitespace and converting to upper case.
+    @param value the comma-separated token-list to split.
+    @return a sequence representing the individual tokens.
+    """
     if value:
         return [s.strip().upper() for s in value.split(',')]
     else:
         return ()
 
-@app.after_request
-def after_request(response):
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  return response
 
-@app.route('/tenders.<format>')
-@app.route('/tender-notices.<format>')
-def bas_query(format):
-    gsins = split(flask.request.args.get('gsins', ''))
-    delivery = split(flask.request.args.get('delivery', ''))
-    opportunity = split(flask.request.args.get('opportunity', ''))
-    keywords = split(flask.request.args.get('keywords', ''))
-    tenders = bas.dao.search_tenders(gsins=gsins, delivery=delivery, opportunity=opportunity, keywords=keywords)
-    if format == 'json':
-        return flask.Response(json.dumps(tenders, indent=2), mimetype='application/json')
-    elif format == 'csv':
-        return flask.Response(generate_csv(tenders), mimetype='text/csv;charset=UTF-8')
-    else:
-        raise Exception("Unsupported format: " + format)
-
-@app.route('/contracts.<format>')
-def contracts(format):
-    gsins = split(flask.request.args.get('gsins', ''))
-    keywords = split(flask.request.args.get('keywords', ''))
-    contracts = bas.dao.search_contracts(gsins=gsins, keywords=keywords)
-    if format == 'json':
-        return flask.Response(json.dumps(contracts, indent=2), mimetype='application/json')
-    else:
-        raise Exception("Unsupported format: " + format)
-
-def generate_csv(notices):
-    headers = [
-        'tender',
-        'title_en',
-        'title_fr',
-        'buyer_en',
-        'buyer_fr',
-        'gsins',
-        'regions_delivery',
-        'regions_opportunity',
-        'url_en',
-        'url_fr',
-        'date_closing'
-    ]
-    def to_csv(row):
-        with io.StringIO() as output:
-            writer = csv.writer(output)
-            writer.writerow(row)
-            return output.getvalue()
-
-    yield(to_csv(headers))
-    for notice in notices:
-        def fix(value):
-            if isinstance(value, str):
-                return value
-            else:
-                return ','.join(value)
-        yield(to_csv([fix(notice[header]) for header in headers]))
+# end
