@@ -43,7 +43,9 @@ with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
         today = str(datetime.date.today())
         cursor.execute('delete from Contracts')
         cursor.execute('delete from ContractSearch')
-        for contract in contracts:
+        for counter, contract in enumerate(contracts):
+            if (counter + 1) % 5000 == 0:
+                print("{}...".format(counter+1))
             if contract['date-expires'] > today:
                 result = cursor.execute(INSERT_CONTRACT_QUERY, (
                     contract['contract'],
