@@ -35,7 +35,7 @@ def tenders(format):
     if format == 'json':
         return flask.Response(gen_json(tenders), mimetype='application/json')
     elif format == 'csv':
-        return flask.Response(gen_tenders_csv(tenders), mimetype='text/plain;charset=UTF-8')
+        return flask.Response(gen_tenders_csv(tenders), mimetype='text/csv;charset=UTF-8')
     else:
         raise Exception("Unsupported format: " + format)
 
