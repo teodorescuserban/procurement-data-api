@@ -3,7 +3,7 @@
 
 import config
 import sys
-import bas
+import bas.tenders
 
 #
 # SQL query constants
@@ -33,44 +33,61 @@ INSERT_REGION_QUERY = ' '.join((
 
 
 #
-# Load the notices
+# Load the tenders
 #
-if sys.argv[1]:
-    notices = bas.load_tenders(sys.argv[1])
-else:
-    notices = bas.load_tenders(sys.stdin)
+with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
+    tenders = bas.tenders.TenderList(input)
+    connection = bas.connect(config)
+    with connection.cursor() as cursor:
 
-#
-# Open the database connection
-#
-connection = bas.connect(config)
+        cursor.execute('delete from Tenders')
+        cursor.execute('delete from TenderSearch')
 
-#
-# Load the notices into the database
-#
-with connection.cursor() as cursor:
+        for counter, tender in enumerate(tenders):
 
-    cursor.execute('delete from Tenders')
-    cursor.execute('delete from TenderSearch')
-    
-    for refno in notices:
-        notice = notices.get(refno)
+            if ((counter+1) % 100) == 0:
+                print("{}...".format(counter+1))
 
-        result = cursor.execute(INSERT_TENDER_QUERY, (refno, notice.solicitation_number, notice.title_en, notice.title_fr, notice.buyer_en, notice.buyer_fr, notice.date_closing))
+            cursor.execute(INSERT_TENDER_QUERY, (
+                tender['reference-number'],
+                tender['solicitation-number'],
+                tender['title_en'],
+                tender['title_fr'],
+                tender['buyer_en'],
+                tender['buyer_fr'],
+                tender['date-closing']
+            ))
 
-        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.title_en, 'en'))
-        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.description_en, 'en'))
-        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.title_fr, 'fr'))
-        result = cursor.execute(INSERT_FULLTEXT_QUERY, (refno, notice.description_fr, 'fr'))
+            cursor.execute(INSERT_FULLTEXT_QUERY, (
+                tender['reference-number'],
+                ' '.join((tender['title_en'], tender['description_en'])),
+                'en'
+            ))
 
-        for gsin in notice.gsins:
-            result = cursor.execute(INSERT_GSIN_QUERY, (refno, gsin))
+            cursor.execute(INSERT_FULLTEXT_QUERY, (
+                tender['reference-number'],
+                ' '.join((tender['title_fr'], tender['description_fr'])),
+                'fr'
+            ))
 
-        for region in notice.regions_delivery:
-            result = cursor.execute(INSERT_REGION_QUERY, (refno, region, 'delivery'))
+            for gsin in tender['gsins']:
+                cursor.execute(INSERT_GSIN_QUERY, (
+                    tender['reference-number'], 
+                    gsin
+                ))
 
-        for region in notice.regions_opportunity:
-            result = cursor.execute(INSERT_REGION_QUERY, (refno, region, 'opportunity'))
+            for region in tender['regions-delivery']:
+                cursor.execute(INSERT_REGION_QUERY, (
+                    tender['reference-number'], 
+                    region, 
+                    'delivery'
+                ))
 
+            for region in tender['regions-opportunity']:
+                cursor.execute(INSERT_REGION_QUERY, (
+                    tender['reference-number'], 
+                    region, 
+                    'opportunity'
+                ))
 
-connection.commit()
+    connection.commit()
