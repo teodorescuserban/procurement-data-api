@@ -67,6 +67,23 @@ PW-13-00538668,Printing Logbooks and Combined Forms for Fisheries and Oceans Can
 PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A)),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569,N7690,QC,INT
 ```
 
+**URL:** http://bas-api.megginson.com/contracts.csv?keywords=baking
+
+**Result:**
+
+```
+contract,title_en,title_fr,date_awarded,date_expires,value,supplier,supplier_city,supplier_region,buyer_en,buyer_fr,gsins,url_en,url_fr
+W8486-122288/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-03-04,2015-12-16,0.00,MIL-QUIP GROUPE TULMAR INC,St-Jean-sur-Richelieu,Quebec,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8486-122288-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8486-122288-001-PR
+W8486-151508/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2014-09-22,2016-01-31,146370.00,CROSS COUNTRY PARTS DISTRIBUTORS LTD,Calgary,Alberta,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8486-151508-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8486-151508-001-PR
+W8486-151118/004/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-03-03,2016-02-24,1253.00,PROTOCAN,Greely,Ontario,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8486-151118-004-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8486-151118-004-PR
+W8482-156567/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-01-23,2016-03-31,145164.00,BIG ERICS INC,DARTMOUTH,Nova Scotia,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8482-156567-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8482-156567-001-PR
+W8482-156615/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-04-01,2016-04-01,25576.00,MAISON RONDEAU,Québec,Quebec,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8482-156615-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8482-156615-001-PR
+W0105-15F011/001/MCT,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-07-24,2016-07-31,468950.00,CHANDLER SUPPLIERS TO BUSINESS AND INDUSTRY,Saint John,New Brunswick,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W0105-15F011-001-MCT,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W0105-15F011-001-MCT
+W8482-134705/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2013-09-12,2016-09-12,25543.00,MAISON RONDEAU,Québec,Quebec,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8482-134705-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8482-134705-001-PR
+W0127-13P009/001/EDM,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2013-09-16,2016-09-30,459415.00,ACTION MEALS,Kingston,Ontario,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W0127-13P009-001-EDM,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W0127-13P009-001-EDM
+W8482-168010/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement pour la cuisson, la cuisson au four et le service des",2015-10-09,2016-12-09,103863.00,BIG ERICS INC,DARTMOUTH,Nova Scotia,Department of National Defence,Ministère de la défense nationale,N7310,https://buyandsell.gc.ca/procurement-data/contract-history/W8482-168010-001-PR,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/contrats-octroyes/W8482-168010-001-PR
+```
+
 
 ### JSON output
 
