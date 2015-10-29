@@ -8,7 +8,7 @@ License: Public Domain
 
 import unittest
 from tests import resolve_file
-from bas.tenders import TenderList
+from bas.input import TenderList, ContractList
 
 class TestTenderList(unittest.TestCase):
 
@@ -30,10 +30,37 @@ class TestTenderList(unittest.TestCase):
 
     def setUp(self):
         self.maxDiff = None
-        with open(resolve_file('files/tender-notices.csv'), 'r') as input:
+        with open(resolve_file('files/tenders.csv'), 'r', encoding='utf-8-sig') as input:
             self.tenders = TenderList(input);
             self.tender = next(self.tenders)
 
     def test_tender(self):
         self.assertEqual(self.EXPECTED, self.tender)
+
+class TestContractList(unittest.TestCase):
+
+    # Expected values (some have changed from original)
+    EXPECTED = {
+        'contract': 'W2213-050347/077/ZM',
+        'title_en': 'Informatics Professional Services',
+        'title_fr': 'Services professionnels, informatique',
+        'date-awarded': '2012-02-08',
+        'date-expires': '2016-09-17',
+        'value': '0.00',
+        'supplier': 'TEAM ACT',
+        'supplier-city': 'Ottawa',
+        'supplier-region': 'Ontario',
+        'buyer_en': 'Department of National Defence',
+        'buyer_fr': 'Ministère de la défense nationale',
+        'gsin': 'D302A'
+    }
+
+    def setUp(self):
+        self.maxDiff = None
+        with open(resolve_file('files/contracts.csv'), 'r', encoding='utf-8-sig') as input:
+            self.contracts = ContractList(input);
+            self.contract = next(self.contracts)
+
+    def test_contract(self):
+        self.assertEqual(self.EXPECTED, self.contract)
 

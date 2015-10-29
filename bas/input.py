@@ -1,13 +1,20 @@
 #!/usr/bin/python3
 # coding=utf8
-"""Parse tender notices from BuyAndSell."""
+"""
+Data input module.
 
-import sys
+Parses CSV files from BuyAndSell into cleaned-up dictionaries.
+The main entry points are TenderList and ContractList.
+
+Started 2015-10 by David Megginson
+"""
+
+import collections
 import csv
 import re
-import collections
-import pprint
 
+
+# Map of region names to codes
 REGION_MAP = {
     'Aboriginal Lands': 'ABL',
     'Alberta': 'AB',
@@ -46,10 +53,31 @@ REGION_MAP = {
     'Yukon': 'YT'
 }
 
+
 class TenderList(object):
-    """A list of tender notices."""
+    """
+    A list of tender notices.
+
+    Will return an iterable over the tender notices in a CSV file,
+    combining the English and French rows.
+
+    Usage:
+
+    <pre>
+    with open('tenders.csv', 'r', encoding='utf-8-sig') as input:
+        tenders = TenderList(input)
+        for tender in tenders:
+            do_something_with_tender(tender)
+    </pre>
+
+    Started 2015-10 by David Megginson
+    """
 
     def __init__(self, input):
+        """
+        Construct a new tender list reader.
+        @param input a character input stream.
+        """
         super().__init__()
         self.input = input
         self.reader = csv.DictReader(input)
@@ -142,8 +170,54 @@ class TenderList(object):
         else:
             raise Exception("Unparseable date: {}".format(s))
 
-if __name__ == '__main__':
-    with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
-        tenders = TenderList(input)
-        for tender in tenders:
-            pprint.pprint(tender)
+
+class ContractList(object):
+    """
+    A list of tender notices.
+
+    Will return an iterable over the contract records in a CSV file.
+
+    Usage:
+
+    <pre>
+    with open('contracts.csv', 'r', encoding='utf-8-sig') as input:
+        contracts = ContractList(input)
+        for contract in contracts:
+            do_something_with_contract(contract)
+    </pre>
+
+    Started 2015-10 by David Megginson
+    """
+
+    def __init__(self, input):
+        """
+        Construct a new contract list reader.
+        @param input a character input stream.
+        """
+        super().__init__()
+        self.input = input
+        self.reader = csv.DictReader(input)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return self._parse(next(self.reader))
+
+    def _parse(self, row):
+        return {
+            'contract': row.get('contract-number'),
+            'title_en': row.get('gsin-description_en'),
+            'title_fr': row.get('gsin-description_fr'),
+            'date-awarded': row.get('award-date'),
+            'date-expires': row.get('expiry-date'),
+            'value': row.get('total-contract-value'),
+            'supplier': row.get('supplier-standardized-name') or row.get('supplier-operating-name') or row.get('supplier-legal-name'),
+            'supplier-city': row.get('supplier-address-city'),
+            'supplier-region': row.get('supplier-address-prov-state'),
+            'buyer_en': row.get('end-user-entity_en'),
+            'buyer_fr': row.get('end-user-entity_fr'),
+            'gsin': row.get('gsin')
+        }
+
+# end

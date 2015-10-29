@@ -3,8 +3,10 @@
 
 import config
 import sys
-import bas.contracts
 import datetime
+
+import bas
+from bas.input import ContractList
 
 #
 # SQL query constants
@@ -37,7 +39,7 @@ INSERT_FULLTEXT_QUERY = ' '.join((
 # Load the contracts
 #
 with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
-    contracts = bas.contracts.ContractList(input)
+    contracts = ContractList(input)
     connection = bas.connect(config)
     with connection.cursor() as cursor:
         today = str(datetime.date.today())

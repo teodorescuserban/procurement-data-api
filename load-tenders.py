@@ -3,7 +3,9 @@
 
 import config
 import sys
-import bas.tenders
+
+import bas
+from bas.input import TenderList
 
 #
 # SQL query constants
@@ -36,7 +38,7 @@ INSERT_REGION_QUERY = ' '.join((
 # Load the tenders
 #
 with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
-    tenders = bas.tenders.TenderList(input)
+    tenders = TenderList(input)
     connection = bas.connect(config)
     with connection.cursor() as cursor:
 
