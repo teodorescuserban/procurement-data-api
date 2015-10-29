@@ -62,12 +62,24 @@ with open(sys.argv[1], 'r', encoding='utf-8-sig') as input:
                     contract['gsin']))
                 result = cursor.execute(INSERT_FULLTEXT_QUERY, (
                     contract['contract'],
-                    contract['title_en'],
+                    ' '.join((
+                        contract['title_en'],
+                        contract['supplier'],
+                        contract['supplier-city'],
+                        contract['supplier-region'],
+                        contract['buyer_en']
+                    )),
                     'en'
                 ));
                 result = cursor.execute(INSERT_FULLTEXT_QUERY, (
                     contract['contract'],
-                    contract['title_fr'],
+                    ' '.join((
+                        contract['title_fr'],
+                        contract['supplier'],
+                        contract['supplier-city'],
+                        contract['supplier-region'],
+                        contract['buyer_fr']
+                    )),
                     'fr'
                 ));
     connection.commit()
