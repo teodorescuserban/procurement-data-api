@@ -25,7 +25,7 @@ class ContractList(object):
             'date-awarded': row.get('award-date'),
             'date-expires': row.get('expiry-date'),
             'value': row.get('total-contract-value'),
-            'supplier': row.get('supplier-operating-name') or row.get('supplier-legal-name'),
+            'supplier': row.get('supplier-standardized-name') or row.get('supplier-operating-name') or row.get('supplier-legal-name'),
             'supplier-city': row.get('supplier-address-city'),
             'supplier-region': row.get('supplier-address-prov-state'),
             'buyer_en': row.get('end-user-entity_en'),
