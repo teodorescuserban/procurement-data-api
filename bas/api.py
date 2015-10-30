@@ -27,6 +27,7 @@ def after_request(response):
 @app.route('/tender-notices.<format>') # deprecated
 def tenders(format):
     """Return a list of matching tenders."""
+    lang = flask.request.args.get('lang', 'en') # for HTML output only
     gsins = _split_tokens(flask.request.args.get('gsins', ''))
     delivery = _split_tokens(flask.request.args.get('delivery', ''))
     opportunity = _split_tokens(flask.request.args.get('opportunity', ''))
@@ -36,6 +37,8 @@ def tenders(format):
         return flask.Response(gen_json(tenders), mimetype='application/json')
     elif format == 'csv':
         return flask.Response(gen_tenders_csv(tenders), mimetype='text/csv;charset=UTF-8')
+    elif format == 'html':
+        return flask.render_template('tenders.html', tenders=tenders, lang=lang)
     else:
         raise Exception("Unsupported format: " + format)
 
@@ -43,7 +46,7 @@ def tenders(format):
 @app.route('/contracts.<format>')
 def contracts(format):
     """Return a list of matching contracts."""
-    lang = flask.request.args.get('lang', 'en')
+    lang = flask.request.args.get('lang', 'en') # for HTML output only
     gsins = _split_tokens(flask.request.args.get('gsins', ''))
     keywords = _split_tokens(flask.request.args.get('keywords', ''))
     contracts = search_contracts(gsins=gsins, keywords=keywords)

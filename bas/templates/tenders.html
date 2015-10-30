@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if lang=='en' %}
+      Tenders
+      {% else %}
+      Appels d'offres
+      {% endif %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    {% for tender in tenders %}
+    {% if lang=='en' %}
+    <section class="record">
+      <h2>
+        <a href="{{ tender.url_en }}">
+          {{ tender.title_en }}
+        </a>
+      </h2>
+
+      <dl>
+        <dt>Deadline</dt>
+        <dd>{{ tender.date_closing }}</dd>
+
+        <dt>Purchaser</dt>
+        <dd>{{ tender.buyer_en }}</dd>
+
+        <dt>Delivery</dt>
+        <dd>{{ ', '.join(tender.regions_delivery) }}</dd>
+
+        {% if tender.regions_opportunity %}
+        <dt>Opportunity</dt>
+        <dd>{{ ', '.join(tender.regions_opportunity) }}</dd>
+        {% endif %}
+      </dl>
+    </section>
+    {% else %}
+    <section class="record">
+      <h2>
+        <a href="{{ tender.url_fr }}">
+          {{ tender.title_fr }}
+        </a>
+      </h2>
+
+      <dl>
+        <dt>Date limite</dt>
+        <dd>{{ tender.date_closing }}</dd>
+
+        <dt>Acheteur</dt>
+        <dd>{{ tender.buyer_fr }}</dd>
+
+        <dt>Livraison</dt>
+        <dd>{{ ', '.join(tender.regions_delivery) }}</dd>
+
+        {% if tender.regions_opportunity %}
+        <dt>Opportunité</dt>
+        <dd>{{ ', '.join(tender.regions_opportunity) }}</dd>
+        {% endif %}
+      </dl>
+    </section>
+    {% endif %}
+    {% endfor %}
+  </body>
+</html>

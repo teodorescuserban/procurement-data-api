@@ -1,7 +1,7 @@
 body {
     font-family: Helvetica, Arial, sanserif;
     background: #cacaca;
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .record {
@@ -14,7 +14,6 @@ body {
 }
 
 .record h2 {
-    font-size: 120%;
     font-weight: bold;
     margin: 0;
     padding: 0;
@@ -25,17 +24,40 @@ body {
     padding: 0;
 }
 
-.record dt {
-    clear: left;
-    width: 5em;
-    float: left;
-    font-style: italic;
-    text-align: right;
-    padding-top: 1ex;
+@media (max-width: 600px) {
+    .record h2 {
+        font-size: 100%;
+    }
+    
+    .record dt {
+        font-style: italic;
+        font-size: 90%;
+        padding-top: 1ex;
+    }
+
+    .record dd {
+        margin-left: 0;
+    }
 }
 
-.record dd {
-    clear: right;
-    margin-left: 6em;
-    padding-top: 1ex;
+@media (min-width: 601px) {
+    .record h2 {
+        font-size: 120%;
+    }
+    
+    .record dt {
+        clear: left;
+        width: 5em;
+        float: left;
+        font-style: italic;
+        text-align: right;
+        padding-top: .5ex;
+    }
+
+    .record dd {
+        clear: right;
+        margin-left: 6em;
+        padding-top: .5ex;
+    }
 }
+
