@@ -33,8 +33,10 @@ The two main paths are ``/tenders`` and ``/contracts``, followed by a file-type 
 
 * ``/tenders.json`` — return up to 100 matching active tenders in JSON format.
 * ``/tenders.csv`` — return up to 100 matching active tenders in CSV format.
+* ``/tenders.csv`` — return up to 100 matching active tenders in a simple HTML format (suitable for an iframe).
 * ``/contracts.json`` — return up to 100 matching active contracts in JSON format.
 * ``/contracts.csv`` — return up to 100 matching active contracts in CSV format.
+* ``/contracts.html`` — return up to 100 matching active contracts in a simple HTML format (suitable for an iframe).
 
 The results are always sorted by date (closing date for a tender, expiry date for a contract).  You can refine them using the following GET parameters:
 
@@ -45,6 +47,8 @@ The results are always sorted by date (closing date for a tender, expiry date fo
 * **delivery** (tenders only) — a comma-separated list of codes to match for the region of delivery, e.g. ``delivery=ON,QC,NCR``.  In addition to the two-letter codes for the 13 provinces and territories, some tender notices may include ``NCR`` for the national-capital region, ``CAN`` for Canada-wide, ``ABL`` for aboriginal lands, ``USA`` for the United States, ``MEX`` for Mexico, or ``INT`` for international.  Tender notices are not consistent, and may (for example) list ``CAN``, all of the province codes separately, or both to indicate a tender that applies to the whole country.
 
 * **opportunity** (tenders only) — a comma-separated list of codes to match for the region of opportunity, e.g. ``opportunity=PE,NS,NB``.  The codes are the same as for the _delivery_ parameter.
+
+* **lang** (HTML output only) — "en" for English output (default), or "fr" for French output, e.g. ``lang=fr``.
 
 
 ## Examples
