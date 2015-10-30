@@ -65,6 +65,12 @@
       </dl>
     </section>
     {% endif %}
+    {% else %}
+    {% if lang == 'en' %}
+    <p>No contracts found.</p>
+    {% else %}
+    <p>Aucun contrat trouvé.</p>    
+    {% endif %}
     {% endfor %}
   </body>
 </html>

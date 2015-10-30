@@ -61,6 +61,12 @@
       </dl>
     </section>
     {% endif %}
+    {% else %}
+    {% if lang == 'en' %}
+    <p>No tenders found.</p>
+    {% else %}
+    <p>Aucun appel d'offres trouvé.</p>    
+    {% endif %}
     {% endfor %}
   </body>
 </html>
