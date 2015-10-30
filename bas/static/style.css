@@ -1,0 +1,41 @@
+body {
+    font-family: Helvetica, Arial, sanserif;
+    background: #cacaca;
+    font-size: 90%;
+}
+
+.record {
+    padding: 1ex;
+    border: 1px solid;
+    border-radius: 1em;
+    margin: 1em;
+    padding: 1em;
+    background: #ffffff;
+}
+
+.record h2 {
+    font-size: 120%;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.record dl {
+    margin: 0;
+    padding: 0;
+}
+
+.record dt {
+    clear: left;
+    width: 5em;
+    float: left;
+    font-style: italic;
+    text-align: right;
+    padding-top: 1ex;
+}
+
+.record dd {
+    clear: right;
+    margin-left: 6em;
+    padding-top: 1ex;
+}

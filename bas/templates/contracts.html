@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if lang=='en' %}
+      Contracts
+      {% else %}
+      Contrats
+      {% endif %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    {% for contract in contracts %}
+    {% if lang=='en' %}
+    <section class="record">
+      <h2>
+        <a href="{{ contract.url_en }}">
+          {{ contract.title_en }}
+        </a>
+      </h2>
+
+      <dl>
+        <dt>Dates</dt>
+        <dd>{{ contract.date_awarded }} to {{ contract.date_expires }}</dd>
+
+        <dt>Value</dt>
+        <dd>{{ "${:,.2f}".format(contract.value|float) }}</dd>
+        
+        <dt>Supplier</dt>
+        <dd>
+          {{ contract.supplier }},
+          {{ contract.supplier_city }},
+          {{ contract.supplier_region }}
+        </dd>
+
+        <dt>Purchaser</dt>
+        <dd>{{ contract.buyer_en }}</dd>
+      </dl>
+    </section>
+    {% else %}
+    <section class="record">
+      <h2>
+        <a href="{{ contract.url_fr }}">
+          {{ contract.title_fr }}
+        </a>
+      </h2>
+
+      <dl>
+        <dt>Dates</dt>
+        <dd>{{ contract.date_awarded }} à {{ contract.date_expires }}</dd>
+
+        <dt>Valeur</dt>
+        <dd>{{ "{:,.2f} $".format(contract.value|float) }}</dd>
+        
+        <dt>Fournisseur</dt>
+        <dd>
+          {{ contract.supplier }},
+          {{ contract.supplier_city }},
+          {{ contract.supplier_region }}
+        </dd>
+
+        <dt>Acheteur</dt>
+        <dd>{{ contract.buyer_fr }}</dd>
+      </dl>
+    </section>
+    {% endif %}
+    {% endfor %}
+  </body>
+</html>
