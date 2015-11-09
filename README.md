@@ -58,7 +58,7 @@ Find all tender notices that have a GSIN code starting with "N76" or "V2", and a
 
 ### CSV output
 
-**URL:** http://bas-api.megginson.com/tenders.csv?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+**URL:** /tenders.csv?gsins=N76,V2&delivery=ON,QC,NCR,CAN
 
 **Result:**
 
@@ -71,7 +71,7 @@ PW-13-00538668,Printing Logbooks and Combined Forms for Fisheries and Oceans Can
 PW-15-00700569,LEOPARD 2 - SPARE PARTS (GRK(W8486-162741/000/A)),LEOPARD 2 - PIECES DE RECHANGE (GRK(W8486-162741/000/A)),https://buyandsell.gc.ca/procurement-data/tender-notice/PW-15-00700569,https://achatsetventes.gc.ca/donnees-sur-l-approvisionnement/appels-d-offres/PW-15-00700569,N7690,QC,INT
 ```
 
-**URL:** http://bas-api.megginson.com/contracts.csv?keywords=baking
+**URL:** /contracts.csv?keywords=baking
 
 **Result:**
 
@@ -91,7 +91,7 @@ W8482-168010/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement p
 
 ### JSON output
 
-**URL:** http://bas-api.megginson.com/tenders.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
+**URL:** /tenders.json?gsins=N76,V2&delivery=ON,QC,NCR,CAN
 
 **Result:**
 
@@ -182,7 +182,7 @@ W8482-168010/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement p
 ]
 ```
 
-**URL:** http://bas-api.megginson.com/contracts.json?keywords=baking
+**URL:** /contracts.json?keywords=baking
 
 **Result:**
 
@@ -282,8 +282,5 @@ W8482-168010/001/PR,"Food, Cooking, Baking and Serving Equipment","Équipement p
 ```
 
 
-## Coming soon ...
 
-* Fuzzy lookup support: if there are no exact GSIN matches, look for something sort-of similar. [#6](https://github.com/PWGSC-DEEN/procurement-data-api/issues/6)
-* Docker setup script (to build as a container).  [#7](https://github.com/PWGSC-DEEN/procurement-data-api/issues/7)
 
