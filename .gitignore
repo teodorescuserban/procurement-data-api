@@ -5,4 +5,5 @@
 /bas_api.egg-info
 /build
 /config.py
+/dist
 __pycache__

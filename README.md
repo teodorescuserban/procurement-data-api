@@ -16,8 +16,8 @@ Allow applications to look up active Government of Canada tenders and contracts 
 2. Set up the database schema: ``mysql bas < sql/schema.sql``
 3. Copy the ``config.py.TEMPLATE`` file to ``config.py`` and fill in your local database connection information.
 4. Set up a Python virtualenv for the app: ``mkvirtualenv -p /usr/bin/python3 bas``
-5. Install dependencies: ``python3 setup.py build``
-6. Download the data and load it into the database: ``sh do-update.sh``
+5. Install dependencies: ``pip3 install -e .``
+6. Download the data and load it into the database: ``sh update-tenders.sh`` and ``sh update-contracts.sh`` (you might want to add these two commands to scheduled [cronjobs](https://en.wikipedia.org/wiki/Cron) so that the data gets updated regularly).
 
 
 ## Running (single thread)
