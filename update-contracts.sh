@@ -5,11 +5,11 @@
 
 echo "Downloading all contracts from BuyAndSell ..."
 cd Inputs
-curl -f 'https://buyandsell.gc.ca/cds/public/contracts/tpsgc-pwgsc_co-ch_tous-all.csv' > contracts.csv
+curl -f#L --compressed 'https://buyandsell.gc.ca/cds/public/contracts/tpsgc-pwgsc_co-ch_tous-all.csv' -o contracts.csv
 
 echo "Loading active contracts into database (will take a while) ..."
 cd ..
-python3 load-contracts.py Inputs/contracts.csv
+python load-contracts.py Inputs/contracts.csv
 
 echo "Done."
 exit

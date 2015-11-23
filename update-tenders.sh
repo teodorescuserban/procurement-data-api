@@ -5,11 +5,11 @@
 
 echo "Downloading active tenders from BuyAndSell ..."
 cd Inputs
-curl -f 'https://buyandsell.gc.ca/procurement-data/csv/tender/active' > tenders.csv
+curl -f#L --compressed 'https://buyandsell.gc.ca/procurement-data/csv/tender/active' -o tenders.csv
 
 echo "Loading active tenders into database ..."
 cd ..
-python3 load-tenders.py Inputs/tenders.csv
+python load-tenders.py Inputs/tenders.csv
 
 echo "Done."
 exit
