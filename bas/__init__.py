@@ -11,6 +11,7 @@ def connect(config):
         saved_connection = pymysql.connect(
             host=config.DATABASE['hostname'],
             user=config.DATABASE['username'],
+            port=config.DATABASE['port'],
             password=config.DATABASE['password'],
             db=config.DATABASE['database'],
             charset='utf8'

@@ -1,5 +1,6 @@
 DATABASE = {
     'hostname': 'localhost',
+    'port': 3306,
     'username': '<<USERNAME>>',
     'password': '<<PASSWORD>>',
     'database': 'bas'
