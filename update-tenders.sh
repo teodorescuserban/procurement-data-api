@@ -9,7 +9,7 @@ curl -f 'https://buyandsell.gc.ca/procurement-data/csv/tender/active' > tenders.
 
 echo "Loading active tenders into database ..."
 cd ..
-python load-tenders.py Inputs/tenders.csv
+python3 load-tenders.py Inputs/tenders.csv
 
 echo "Done."
 exit
