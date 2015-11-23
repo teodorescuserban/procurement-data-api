@@ -4,6 +4,8 @@ drop table if exists Regions;
 drop table if exists GSINs;
 drop table if exists TenderSearch;
 drop table if exists Tenders;
+drop table if exists ContractSearch;
+drop table if exists Contracts;
 
 create table Tenders (
   tender varchar(32) primary key,
